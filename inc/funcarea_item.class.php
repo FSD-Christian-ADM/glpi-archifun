@@ -50,7 +50,7 @@ class PluginArchifunFuncarea_Item extends CommonDBRelation {
       return _n('Funcarea item', 'Funcareas items', 1, 'archifun');
    }*/
 
-   public function canCreateItem() {
+   public function canCreateItem(): bool {
       return true;
    }
    /**
@@ -156,7 +156,7 @@ class PluginArchifunFuncarea_Item extends CommonDBRelation {
          "WHERE `plugin_archifun_funcareas_id` = '" . $plugin_archifun_funcareas_id . "'
          AND `itemtype` = '" . $items_id . "'
          AND `items_id` = '" . $itemtype . "'";
-      if ($result = $DB->query($query)) {
+      if ($result = $DB->doQuery($query)) {
          if ($DB->numrows($result) != 1) {
             return false;
          }
@@ -217,7 +217,7 @@ class PluginArchifunFuncarea_Item extends CommonDBRelation {
              ORDER BY `itemtype`
              LIMIT ".count(PluginArchifunFuncarea::getTypes(true));
 
-      $result = $DB->query($query);
+      $result = $DB->doQuery($query);
       $number = $DB->numrows($result);
 
       if (Session::isMultiEntitiesMode()) {
@@ -341,7 +341,7 @@ class PluginArchifunFuncarea_Item extends CommonDBRelation {
                   $query.=" ORDER BY `glpi_entities`.`completename`, `".$itemTable."`.`$column`";
                }
 
-            if ($result_linked=$DB->query($query)) {
+            if ($result_linked=$DB->doQuery($query)) {
                if ($DB->numrows($result_linked)) {
 
                   Session::initNavigateListItems($itemType,PluginArchifunFuncarea::getTypeName(2)." = ".$funcarea->fields['name']);
@@ -446,7 +446,7 @@ class PluginArchifunFuncarea_Item extends CommonDBRelation {
 
       $query .= " ORDER BY `assocName`";
 
-      $result = $DB->query($query);
+      $result = $DB->doQuery($query);
       $number = $DB->numrows($result);
       $i      = 0;
 
@@ -483,7 +483,7 @@ class PluginArchifunFuncarea_Item extends CommonDBRelation {
                WHERE `is_deleted` = '0'
                $limit";
 
-         $result = $DB->query($q);
+         $result = $DB->doQuery($q);
          $nb     = $DB->result($result,0,0);
 
          echo "<div class='firstbloc'>";

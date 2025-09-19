@@ -31,10 +31,10 @@ function plugin_archifun_install() {
 
    $update=false;
    if (!$DB->TableExists("glpi_plugin_archifun_funcareas")) {
-		$DB->runFile(Plugin::getPhpDir("archifun")."/sql/empty-1.0.3.sql");
+		$DB->runFile(Plugin::getPhpDir("archifun")."/sql/empty-1.0.4.sql");
 	}
    if (!$DB->TableExists("glpi_plugin_archifun_funcareas_itemroles")) {
-		$DB->runFile(Plugin::getPhpDir("archifun")."/sql/update-1.0.3.sql");
+		$DB->runFile(Plugin::getPhpDir("archifun")."/sql/update-1.0.4.sql");
 	}
 
    
@@ -58,7 +58,7 @@ function plugin_archifun_uninstall() {
 					"glpi_plugin_archifun_profiles"];
 
    foreach($tables as $table)
-      $DB->query("DROP TABLE IF EXISTS `$table`;");
+      $DB->doQuery("DROP TABLE IF EXISTS `$table`;");
 
 	$tables_glpi = ["glpi_displaypreferences",
                "glpi_documents_items",
@@ -69,7 +69,7 @@ function plugin_archifun_uninstall() {
                "glpi_dropdowntranslations"];
 
    foreach($tables_glpi as $table_glpi)
-      $DB->query("DELETE FROM `$table_glpi` WHERE `itemtype` LIKE 'PluginArchifun%' ;");
+      $DB->doQuery("DELETE FROM `$table_glpi` WHERE `itemtype` LIKE 'PluginArchifun%' ;");
 
    if (class_exists('PluginDatainjectionModel')) {
       PluginDatainjectionModel::clean(['itemtype'=>'PluginArchifunFuncarea']);

@@ -305,7 +305,7 @@ class PluginArchifunFuncarea extends CommonTreeDropdown {
                 FROM `glpi_plugin_archifun_funcareas` 
                 $where
                 ORDER BY `name`";
-      $result = $DB->query($query);
+      $result = $DB->doQuery($query);
 
       $values = [0 => Dropdown::EMPTY_VALUE];
 
