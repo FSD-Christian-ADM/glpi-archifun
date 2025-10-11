@@ -23,6 +23,12 @@
  along with Archifun. If not, see <http://www.gnu.org/licenses/>.
  --------------------------------------------------------------------------
  */
+define('PLUGIN_ARCHIFUN_VERSION', '2.3.2');
+
+// Minimal GLPI version, inclusive
+define('PLUGIN_ARCHIFUN_MIN_GLPI', '10.0.0');
+// Maximum GLPI version, exclusive
+define('PLUGIN_ARCHIFUN_MAX_GLPI', '11.0.99');
 
 // Init the hooks of the plugins -Needed
 function plugin_init_archifun() {
@@ -86,14 +92,15 @@ function plugin_version_archifun() {
 
    return array (
       'name' => _n('Functional Area', 'Functional Areas', 2, 'archifun'),
-      'version' => '2.3.1',
+      'version' => PLUGIN_ARCHIFUN_VERSION,
       'author'  => "Eric Feron",
       'license' => 'GPLv2+',
       'homepage'=>'https://github.com/ericferon/glpi-archifun',
       'requirements' => [
          'glpi' => [
-            'min' => '10.0',
-            'dev' => false
+            'min' => PLUGIN_ARCHIFUN_MIN_GLPI,
+            'max' => PLUGIN_ARCHIFUN_MAX_GLPI,
+//            'dev' => false
          ]
       ]
    );
@@ -102,13 +109,6 @@ function plugin_version_archifun() {
 
 // Optional : check prerequisites before install : may print errors or add to message after redirect
 function plugin_archifun_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '10.0', 'lt')
-       || version_compare(GLPI_VERSION, '11.1', 'ge')) {
-      if (method_exists('Plugin', 'messageIncompatible')) {
-         echo Plugin::messageIncompatible('core', '10.0');
-      }
-      return false;
-   }
    return true;
 }
 
