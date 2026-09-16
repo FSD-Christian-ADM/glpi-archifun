@@ -6,7 +6,7 @@
  -------------------------------------------------------------------------
 
  LICENSE
-      
+
  This file is part of Archifun.
 
  Archifun is free software; you can redistribute it and/or modify
@@ -33,8 +33,8 @@ class PluginArchifunFuncarea extends CommonTreeDropdown {
    public $dohistory=true;
    static $rightname = "plugin_archifun";
    protected $usenotepad         = true;
-   
-   static $types = ['Computer','Software', 'SoftwareLicense'//, 
+
+   static $types = ['Computer','Software', 'SoftwareLicense'//,
 //                    'PluginArchibpTask'
                     ];
 
@@ -100,12 +100,12 @@ class PluginArchifunFuncarea extends CommonTreeDropdown {
       ];
 
       $tab[] = [
-         'id'            => '1',
-         'table'         => $this->getTable(),
-         'field'         => 'name',
-         'name'          => __('Name'),
-         'datatype'      => 'itemlink',
-         'itemlink_type' => $this->getType()
+          'id'            => '1',
+          'table'         => $this->getTable(),
+          'field'         => 'completename',
+          'name'          => __('Functional Structure', 'archifun'),
+          'datatype'      => 'itemlink',
+          'massiveaction' => false
       ];
 
       $tab[] = [
@@ -137,6 +137,15 @@ class PluginArchifunFuncarea extends CommonTreeDropdown {
       ];
 
       $tab[] = [
+          'id'            => '14',
+          'table'         => $this->getTable(),
+          'field'         => 'name',
+          'name'          => __('Name'),
+          'datatype'      => 'itemlink',
+          'massiveaction' => false
+      ];
+
+      $tab[] = [
          'id'            => '16',
          'table'         => $this->getTable(),
          'field'         => 'date_mod',
@@ -161,13 +170,13 @@ class PluginArchifunFuncarea extends CommonTreeDropdown {
          'datatype'     => 'bool'
       ];
 
-      $tab[] = [
-         'id'            => '80',
-         'table'         => $this->getTable(),
-         'field'    => 'completename',
-         'name'     => __('Functional Structure', 'archifun'),
-         'datatype' => 'dropdown'
-      ];
+//      $tab[] = [
+//         'id'            => '80',
+//         'table'         => $this->getTable(),
+//         'field'    => 'completename',
+//         'name'     => __('Functional Structure', 'archifun'),
+//         'datatype' => 'dropdown'
+//      ];
 
       $tab[] = [
          'id'        => '81',
@@ -246,9 +255,9 @@ class PluginArchifunFuncarea extends CommonTreeDropdown {
       echo "<tr class='tab_bg_1'>";
       //groups
       echo "<td>".__('Function Owner', 'archifun')."</td><td>";
-      Group::dropdown(['name'      => 'groups_id', 
-                        'value'     => $this->fields['groups_id'], 
-                        'entity'    => $this->fields['entities_id'], 
+      Group::dropdown(['name'      => 'groups_id',
+                        'value'     => $this->fields['groups_id'],
+                        'entity'    => $this->fields['entities_id'],
                         'condition' => ['is_assign' => 1]
                         ]);
       echo "</td>";
@@ -264,7 +273,7 @@ class PluginArchifunFuncarea extends CommonTreeDropdown {
 
       return true;
    }
-   
+
    /**
     * Make a select box for link funcarea
     *
