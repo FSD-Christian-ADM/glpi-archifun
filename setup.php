@@ -6,7 +6,7 @@
  -------------------------------------------------------------------------
 
  LICENSE
-      
+
  This file is part of Archifun.
 
  Archifun is free software; you can redistribute it and/or modify
@@ -23,7 +23,7 @@
  along with Archifun. If not, see <http://www.gnu.org/licenses/>.
  --------------------------------------------------------------------------
  */
-define('PLUGIN_ARCHIFUN_VERSION', '2.3.2');
+define('PLUGIN_ARCHIFUN_VERSION', '2.3.3');
 
 // Minimal GLPI version, inclusive
 define('PLUGIN_ARCHIFUN_MIN_GLPI', '10.0.0');
@@ -37,10 +37,10 @@ function plugin_init_archifun() {
    $PLUGIN_HOOKS['csrf_compliant']['archifun'] = true;
    $PLUGIN_HOOKS['change_profile']['archifun'] = ['PluginArchifunProfile', 'initProfile'];
 //   $PLUGIN_HOOKS['assign_to_ticket']['archifun'] = false;
-   
+
    //$PLUGIN_HOOKS['assign_to_ticket_dropdown']['archifun'] = true;
    //$PLUGIN_HOOKS['assign_to_ticket_itemtype']['archifun'] = ['PluginArchifunFuncarea_Item'];
-   
+
    Plugin::registerClass('PluginArchifunFuncarea', array(
          'linkgroup_tech_types'   => true,
          'linkuser_tech_types'    => true,
@@ -51,7 +51,7 @@ function plugin_init_archifun() {
    ));
    Plugin::registerClass('PluginArchifunProfile',
                          ['addtabon' => 'Profile']);
-                         
+
    if (class_exists('PluginArchiswSwcomponent')) {
       PluginArchiswSwcomponent::registerType('PluginArchifunFuncarea');
    }
@@ -63,7 +63,7 @@ function plugin_init_archifun() {
    }
    //Plugin::registerClass('PluginArchifunFuncarea_Item',
    //                      ['ticket_types' => true]);
-      
+
    if (Session::getLoginUserID()) {
 
       if (Session::haveRight("plugin_archifun", READ)) {
